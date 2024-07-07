@@ -16,7 +16,7 @@ const Home=()=>{
            </div>
           
            <div className=" relative ">
-                <p className="absolute flex align-middle text-[40px] text-white"> Ultimate Entertainement</p>
+                <p className="absolute  text-[40px] text-red-700"> Ultimate Entertainement</p>
            </div>
     </>
 

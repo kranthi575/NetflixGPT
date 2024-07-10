@@ -7,17 +7,17 @@ const  FormValidation=(username,email,password)=>{
 
     //user should contains minimum of 8 characters and includes alphabets and numericals
     const usernameRegx=/^[a-zA-Z0-9]{8,}$/;
-
-    if(!usernameRegx.test(username)){
+    if(username!=null)
+    {if(!usernameRegx.test(username)){
         return "entered username is not in valid format";
-    }
+    }}
     if(!emailRegx.test(email)){
         return "entered email is not in valid format";
     }
     if(!passwordRegx.test(password)){
         return "entered password is not in valid format";
     }
-    return "Registered succesfully!!";
+    return null;
     
 }
 export default FormValidation;

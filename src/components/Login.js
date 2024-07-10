@@ -2,50 +2,82 @@ import { useRef, useState } from "react";
 import * as Constants from "../utils/constants";
 import Header from "./Header";
 import Link from "react";
-
+import FormValidation from "../utils/FormValidation";
 import { useNavigate } from "react-router-dom";
+import auth from "../utils/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 const Login=()=>{
 
-   
+    const email=useRef();
+    const password=useRef();
 
     const [formData,setFormData]=useState({uname:'',password:''});
+    const [errorMsg,setErrorMsg]=useState(null);
+    const [signIn,setsignIn]=useState(false);
     const navigate=useNavigate();
-    function handleSubmit(event){
-        event.preventDefault();
 
+    function handleSignInSubmit(event){
+        event.preventDefault();
+        const message=FormValidation(null,email.current.value,password.current.value);
+        console.log(message);
+        setErrorMsg(message);
+        if(message==null){
+                
+            const mail=email.current.value;
+            const pwd=password.current.value;
+
+            //verifying user to signIn
+            signInWithEmailAndPassword(auth, mail, pwd)
+            .then((userCredential) => {
+              // Signed in 
+              const user = userCredential.user;
+              //set signin true
+              setsignIn(true);
+              console.log("sign success")
+
+            })
+            .catch((error) => {
+                setsignIn(false);
+                console.log("error in sign success")
+              const errorCode = error.code;
+              const errorMessage = error.message;
+            });
+        }
+
+        
 
 
     }
 
     function handleChange(event){
 
-        const {name,value}=event.target;
-
-        setFormData({...formData,[name]:value});
+       setErrorMsg(null);
 
     };
 
-    function handleSubmit(event){
-        event.preventDefault();
-        console.log("Form submitted!!",formData);
-        alert("Form submitted successfully!!");
-        setFormData({uname:'',password:''});
+    
+
+    if(signIn){
+            navigate('/browserHome');
     }
     return <>
     <Header/>
     <div className="absolute">
         <img src={Constants.loginbgImg}></img>
     </div>
-    <div className="relative bg-black border border-solid border-black rounded-md h-[450px] w-[300px] mt-[200px] ml-[500px] bg-opacity-60">    
-    <form onSubmit={handleSubmit} className="text-white space-y-4 flex flex-col">
+    <div className="relative bg-black border border-solid border-black rounded-md h-[500px] w-[300px] mt-[200px] ml-[500px] bg-opacity-60">    
+    <form onSubmit={handleSignInSubmit} className="text-white space-y-4 flex flex-col">
             
-            <p className="p-4 text-2xl">Sign In</p>
+            <p className="p-4 text-2xl font-bold">Sign In</p>
             
             <label className="m-4">Email</label>
-            <input type="text" onChange={handleChange} name="username" className="mb-4 ml-4 h-10 w-[200px] bg-gray-500"></input>
+            <input type="text" ref={email} onChange={handleChange} name="username" className="mb-4 ml-4 h-10 w-[200px] bg-gray-500"></input>
             <label></label>
             <label className="m-4">Password</label>
-            <input type="password" onChange={handleChange} name="password" className="ml-4 h-10 w-[200px] bg-gray-500"></input>
+            <input type="password" ref={password} onChange={handleChange} name="password" className="ml-4 h-10 w-[200px] bg-gray-500"></input>
+            {errorMsg!=null?<p className="font-bold text-red-600">{errorMsg}</p>:null}
+            
             <button type="submit" className=" mt-8 ml-10 mb-3 p-4 bg-red-600 w-[200px] rounded-lg" >Sign In</button>
             <label className="ml-[130px]">or</label>
     </form>

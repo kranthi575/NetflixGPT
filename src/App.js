@@ -4,6 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 import Register from './components/Register';
 import Home from './components/Home';
 import BrowserHome from './components/BrowserHome';
+import appStore from './utils/appStore';
 
 const appRouter=createBrowserRouter(
   [
@@ -30,6 +31,7 @@ function App() {
 
   
   return (
+    
     <RouterProvider router={appRouter}/> );
    }
 

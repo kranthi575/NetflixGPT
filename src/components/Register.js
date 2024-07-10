@@ -3,6 +3,8 @@ import * as Constants from "../utils/constants";
 import { useState,useRef, } from "react";
 import FormValidation from "../utils/FormValidation";
 import { useNavigate } from "react-router-dom";
+import auth from "../utils/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 const Register=()=>{
 
 
@@ -12,57 +14,70 @@ const Register=()=>{
 
     const navigate=useNavigate();
 
-    const [formData,setFormData]=useState({});
-    const [error,setError]=useState(null);
+    const [formData,setFormData]=useState({username:'',email:'',password:''});
+    const [errorMsg,setErrorMsg]=useState(null);
+    const [regSuccess,setregSuccess]=useState(false);
 
-    function handleRedirect(){
-
-    }
     function handleChange(event){
-
-        const {name,value}=event.target;
-        setError(null);
-        setFormData({...formData,[name]:value});
-
-
+        setErrorMsg(null);
     }
-
     function handleSubmit(event){
        event.preventDefault(); 
-      const errorMsg = FormValidation(username.current.value,email.current.value,password.current.value);
+       const errorMsg = FormValidation(username.current.value,email.current.value,password.current.value);
     
-        setError(errorMsg);
+       setErrorMsg(errorMsg);
       
       console.log(errorMsg);
-      //alert('Registered successfully!');
-       console.log(formData);
-       setFormData({Username:'',Email:'',Password:''});
+      if(errorMsg==null){
+        const uname=username.current.value;
+        const mail=email.current.value;
+        const pwd=password.current.value;
+        console.log("no errors in data")
+        const formdata={username:uname,email:mail,password:pwd};
+        console.log(formdata);
+        setFormData({username:uname,email:mail,password:pwd})
+
+        //creating user into firebase
+        createUserWithEmailAndPassword(auth, mail, pwd)
+                .then((userCredential) => {
+                    // Signed up 
+                    const user = userCredential.user;
+                    setregSuccess(true);
+        
+                    
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setregSuccess(false);
+                    // ..
+                });
+                    }
+       
     }
-
-
     return <>
-       <Header/>
+           <Header/>
             <div className="absolute">
                 <img src={Constants.loginbgImg}></img>
             </div>
-            <div className="relative bg-black border border-solid border-black rounded-md h-[450px] w-[300px] mt-[200px] ml-[500px] bg-opacity-60">    
+            <div className="relative bg-black border border-solid border-black rounded-md h-[500px] w-[300px] mt-[200px] ml-[500px] bg-opacity-60">    
             <form onSubmit={handleSubmit} className="text-white space-y-2 flex flex-col">
                     
                     <p className="p-4 text-2xl">Sign Up</p>
                     
                     <label className="m-4">Username</label>
-                    <input type="text" ref={username} onChange={handleChange} name="username"  className="mb-4 ml-4 h-10 w-[200px] bg-gray-500 rounded-lg text-white"></input>
+                    <input type="text" ref={username}  name="username" onChange={handleChange} className="mb-4 ml-4 h-10 w-[200px] bg-gray-500 rounded-lg text-white"></input>
                     <label></label>
                     <label className="m-4">Email</label>
-                    <input type="text" ref={email} onChange={handleChange} name="email"  className="mb-4 ml-4 h-10 w-[200px] bg-gray-500 rounded-lg"></input>
+                    <input type="text" ref={email}  name="email" onChange={handleChange} className="mb-4 ml-4 h-10 w-[200px] bg-gray-500 rounded-lg"></input>
                     
                     <label className="m-4">Password</label>
-                    <input type="password" ref={password} onChange={handleChange} name="password"  className="ml-4 h-10 w-[200px] bg-gray-500 rounded-lg"></input>
-                    <button className=" ml-16 text-white bg-red-700 h-10 w-[150px] rounded-lg" type="submit" >Sign Up</button>
-                    {error?<p className="text-red-700">{error}</p>:null}
-                    {!error? ()=>{navigate('/browserHome')}:null}
-            </form>
-                    
+                    <input type="password" ref={password}  name="password" onChange={handleChange} className="ml-4 h-10 w-[200px] bg-gray-500 rounded-lg"></input>
+                    <button className=" ml-16 text-white bg-red-700 h-10 w-[150px] rounded-lg " type="submit" >Sign Up</button>
+                    {errorMsg?<p className="text-red-700 font-bold">{errorMsg}</p>:null}
+                    {regSuccess?<p className="text-white font-bold">Registered successfully!</p>:null}
+                    </form>
+               <button className=" ml-16 text-white bg-red-700 h-10 w-[150px] rounded-lg mt-5" onClick={()=>{navigate('/login')}}>back to SignIn</button>     
             </div>
     </>
 

@@ -1,20 +1,22 @@
 import { useRef, useState } from "react";
 import * as Constants from "../utils/constants";
 import Header from "./Header";
-import Link from "react";
 import FormValidation from "../utils/FormValidation";
 import { useNavigate } from "react-router-dom";
 import auth from "../utils/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
+
 const Login=()=>{
+
 
     const email=useRef();
     const password=useRef();
 
     const [formData,setFormData]=useState({uname:'',password:''});
     const [errorMsg,setErrorMsg]=useState(null);
-    const [signIn,setsignIn]=useState(false);
+    const [signIn,setsignIn]=useState(null);
+    const [errorCode,seterrorCode]=useState(null);
     const navigate=useNavigate();
 
     function handleSignInSubmit(event){
@@ -31,10 +33,11 @@ const Login=()=>{
             signInWithEmailAndPassword(auth, mail, pwd)
             .then((userCredential) => {
               // Signed in 
-              const user = userCredential.user;
+            
               //set signin true
               setsignIn(true);
               console.log("sign success")
+
 
             })
             .catch((error) => {
@@ -42,6 +45,8 @@ const Login=()=>{
                 console.log("error in sign success")
               const errorCode = error.code;
               const errorMessage = error.message;
+              seterrorCode(errorCode);
+              console.log(errorCode," : ",errorMessage)
             });
         }
 
@@ -77,7 +82,7 @@ const Login=()=>{
             <label className="m-4">Password</label>
             <input type="password" ref={password} onChange={handleChange} name="password" className="ml-4 h-10 w-[200px] bg-gray-500"></input>
             {errorMsg!=null?<p className="font-bold text-red-600">{errorMsg}</p>:null}
-            
+            {signIn==false?<p>Incorrect username or password {errorCode}</p>:null}
             <button type="submit" className=" mt-8 ml-10 mb-3 p-4 bg-red-600 w-[200px] rounded-lg" >Sign In</button>
             <label className="ml-[130px]">or</label>
     </form>

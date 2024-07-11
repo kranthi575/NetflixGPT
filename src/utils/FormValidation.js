@@ -3,10 +3,10 @@ const  FormValidation=(username,email,password)=>{
     const emailRegx=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     //Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, 
     //one special character, no space, and it must be 8-16 characters long.
-    const passwordRegx=/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/;
+    const passwordRegx=/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{4,16}$/;
 
     //user should contains minimum of 8 characters and includes alphabets and numericals
-    const usernameRegx=/^[a-zA-Z0-9]{8,}$/;
+    const usernameRegx=/^[a-zA-Z0-9]{4,}$/;
     if(username!=null)
     {if(!usernameRegx.test(username)){
         return "entered username is not in valid format";

@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
-import HomeHeader from "../Homepage/HomeHeader";
-import Header from "./Header";
+import { useNavigate } from "react-router-dom";
 
 const BrowserHome=()=>{
 
+    const navigate=useNavigate();
     console.log("BrowserHome");
     return <>
     <div className="bg-white flex justify-row space-x-[200px]">
@@ -21,7 +20,7 @@ const BrowserHome=()=>{
         
     </div>
         <div className="m-4 space-x-[200px]">
-           <button className="text-white bg-red-600 h-10 w-15 rounded-lg font-bold">SignOut</button>
+           <button className="text-white bg-red-600 h-10 w-15 rounded-lg font-bold" onClick={()=>{navigate('/')}}>SignOut</button>
         </div>
           
 

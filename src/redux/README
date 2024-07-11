@@ -1,0 +1,35 @@
+steps to follow while creating redux store
+
+#1 create the appStore
+
+        configureStore( reducer:{});
+
+#2 create the slice
+
+        createSlice();
+
+    add name
+    add initial state of the slice
+    add reducers (actions/methods to perform on the slice state)
+
+    export all the actions inside the reducer
+    export const {}=slice.reducer;
+
+    export the reducer
+    export default slice.reducer
+
+#3 import the slice reducer into appstore(#1)
+
+    import sliceReducer(you can give any name here) from "path of the slice";
+
+    add the imported slice reducer to the reducer map in appstore
+
+
+#4 Now redux store is ready to use in our app
+
+    configure our redux store in the main application component
+    using the provider
+
+    <Provider store={appStore}>
+        <app component />
+    </Provider>

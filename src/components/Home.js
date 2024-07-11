@@ -1,5 +1,4 @@
 import * as Constants from "../utils/constants.js";
-import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 const Home=()=>{
 
@@ -9,7 +8,7 @@ const Home=()=>{
     return <>
         <div>
             <div className="absolute">
-                <img  src={bg_img_url} className="shadow-lg"></img>
+                <img  src={bg_img_url} className="shadow-lg" alt="bg_img"></img>
            </div>
            <div className="relative  w-[100px] h-[40px] ml-4 top-4">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo"></img>

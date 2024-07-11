@@ -4,19 +4,23 @@ import { useState,useRef, } from "react";
 import FormValidation from "../utils/FormValidation";
 import { useNavigate } from "react-router-dom";
 import auth from "../utils/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+
+
 const Register=()=>{
+
+
 
 
     const email=useRef();
     const password=useRef();
     const username=useRef(); 
-
     const navigate=useNavigate();
 
+    const [errorCode,seterrorCode]=useState(null);
     const [formData,setFormData]=useState({username:'',email:'',password:''});
     const [errorMsg,setErrorMsg]=useState(null);
-    const [regSuccess,setregSuccess]=useState(false);
+    const [regSuccess,setregSuccess]=useState(null);
 
     function handleChange(event){
         setErrorMsg(null);
@@ -41,15 +45,21 @@ const Register=()=>{
         createUserWithEmailAndPassword(auth, mail, pwd)
                 .then((userCredential) => {
                     // Signed up 
-                    const user = userCredential.user;
+                    const {uid} = userCredential.user;
+                    //updating user with displayname
+                    console.log("creating user::")    
+                           
                     setregSuccess(true);
         
                     
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
+                   const  errorCode = error.code;
                     const errorMessage = error.message;
+                    console.log("setting regsucess false");
                     setregSuccess(false);
+                    seterrorCode(errorCode);
+                    console.log(errorCode," : ",errorMessage)
                     // ..
                 });
                     }
@@ -75,7 +85,8 @@ const Register=()=>{
                     <input type="password" ref={password}  name="password" onChange={handleChange} className="ml-4 h-10 w-[200px] bg-gray-500 rounded-lg"></input>
                     <button className=" ml-16 text-white bg-red-700 h-10 w-[150px] rounded-lg " type="submit" >Sign Up</button>
                     {errorMsg?<p className="text-red-700 font-bold">{errorMsg}</p>:null}
-                    {regSuccess?<p className="text-white font-bold">Registered successfully!</p>:null}
+                    {regSuccess==true?<p className="text-white font-bold">user registered successfully!</p>:null}
+                    {regSuccess==false?<p className="text-white font-bold">Error in registering user!! {errorCode}</p>:null}
                     </form>
                <button className=" ml-16 text-white bg-red-700 h-10 w-[150px] rounded-lg mt-5" onClick={()=>{navigate('/login')}}>back to SignIn</button>     
             </div>

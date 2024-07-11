@@ -4,8 +4,10 @@ import { RouterProvider } from 'react-router-dom';
 import Register from './components/Register';
 import Home from './components/Home';
 import BrowserHome from './components/BrowserHome';
-import appStore from './utils/appStore';
+import { useEffect } from 'react';
 
+import { onAuthStateChanged } from 'firebase/auth';
+import auth from './utils/firebase';
 const appRouter=createBrowserRouter(
   [
     {
@@ -28,11 +30,9 @@ const appRouter=createBrowserRouter(
 
 function App() {
 
-
-  
   return (
-    
-    <RouterProvider router={appRouter}/> );
+    <RouterProvider router={appRouter}/> 
+  );
    }
 
 export default App;

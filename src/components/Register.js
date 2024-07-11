@@ -4,7 +4,7 @@ import { useState,useRef, } from "react";
 import FormValidation from "../utils/FormValidation";
 import { useNavigate } from "react-router-dom";
 import auth from "../utils/firebase";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
 
 
 const Register=()=>{
@@ -45,7 +45,18 @@ const Register=()=>{
         createUserWithEmailAndPassword(auth, mail, pwd)
                 .then((userCredential) => {
                     // Signed up 
-                    const {uid} = userCredential.user;
+                    const user = userCredential.user;
+
+                    //updating user profile
+                    updateProfile(user,{
+                            displayName:uname
+                    })
+                    .then(()=>{
+                        console.log("profile updated successfully!!")
+                    }
+                    ).catch(()=>{
+                        console.log("error in updating profile!!");
+                    });
                     //updating user with displayname
                     console.log("creating user::")    
                            

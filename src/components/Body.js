@@ -43,12 +43,12 @@ function Body() {
         if (user) {
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/auth.user
-          const userDATA=user.displayName;
-          console.log("user signed in::");
+          const {uid,displayName,email}=user;
+          console.log("Body:: user signed in::");
             console.log(user);
           //adding signin user data to redux store
 
-            dispatch(addUser(userDATA));
+            dispatch(addUser({uid:uid,displayName:displayName,email:email}));
           // ...
         } else {
           // User is signed out

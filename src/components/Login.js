@@ -71,16 +71,16 @@ const Login=()=>{
     <div className="absolute">
         <img src={Constants.loginbgImg}></img>
     </div>
-    <div className="relative bg-black border border-solid border-black rounded-md h-[500px] w-[300px] mt-[200px] ml-[500px] bg-opacity-60">    
+    <div className="relative bg-black border border-solid border-black rounded-md h-[500px] w-[350px] mt-[200px] ml-[500px] bg-opacity-60">    
     <form onSubmit={handleSignInSubmit} className="text-white space-y-4 flex flex-col">
             
             <p className="p-4 text-2xl font-bold">Sign In</p>
             
             <label className="m-4">Email</label>
-            <input type="text" ref={email} onChange={handleChange} name="username" className="mb-4 ml-4 h-10 w-[200px] bg-gray-500"></input>
+            <input type="text" ref={email} onChange={handleChange} name="username" className="mb-4 ml-10 h-10 w-[200px] bg-gray-500 rounded-md"></input>
             <label></label>
             <label className="m-4">Password</label>
-            <input type="password" ref={password} onChange={handleChange} name="password" className="ml-4 h-10 w-[200px] bg-gray-500"></input>
+            <input type="password" ref={password} onChange={handleChange} name="password" className="ml-10 h-10 w-[200px] bg-gray-500 rounded-md"></input>
             {errorMsg!=null?<p className="font-bold text-red-600">{errorMsg}</p>:null}
             {signIn==false?<p>Incorrect username or password {errorCode}</p>:null}
             <button type="submit" className=" mt-8 ml-10 mb-3 p-4 bg-red-600 w-[200px] rounded-lg" >Sign In</button>

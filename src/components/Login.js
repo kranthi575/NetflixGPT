@@ -5,6 +5,8 @@ import FormValidation from "../utils/FormValidation";
 import { useNavigate } from "react-router-dom";
 import auth from "../utils/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/userSlice";
 
 
 const Login=()=>{
@@ -12,6 +14,7 @@ const Login=()=>{
 
     const email=useRef();
     const password=useRef();
+    const dispatch=useDispatch();
 
     const [formData,setFormData]=useState({uname:'',password:''});
     const [errorMsg,setErrorMsg]=useState(null);
@@ -28,16 +31,24 @@ const Login=()=>{
                 
             const mail=email.current.value;
             const pwd=password.current.value;
-
+            
             //verifying user to signIn
             signInWithEmailAndPassword(auth, mail, pwd)
             .then((userCredential) => {
               // Signed in 
-            
               //set signin true
               setsignIn(true);
-              console.log("sign success")
+              
+              console.log("sign success :: Login");
 
+              //adding signuser into redux store user slice
+              const user=auth.currentUser;
+              const {uid,displayName,email}=user;
+              console.log("updating redux from login :: using currentuser");
+                console.log(user);
+              //adding signin user data to redux store
+    
+                dispatch(addUser({uid:uid,displayName:displayName,email:email}));
 
             })
             .catch((error) => {
@@ -67,9 +78,12 @@ const Login=()=>{
             navigate('/browserHome');
     }
     return <>
-    <Header/>
+   
     <div className="absolute">
         <img src={Constants.loginbgImg}></img>
+    </div>
+    <div className="relative">
+    <Header/>
     </div>
     <div className="relative bg-black border border-solid border-black rounded-md h-[500px] w-[350px] mt-[200px] ml-[500px] bg-opacity-60">    
     <form onSubmit={handleSignInSubmit} className="text-white space-y-4 flex flex-col">

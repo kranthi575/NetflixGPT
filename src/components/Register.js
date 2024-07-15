@@ -81,10 +81,13 @@ const Register=()=>{
        
     }
     return <>
-           <Header/>
+           
             <div className="absolute">
                 <img src={Constants.loginbgImg}></img>
             </div>
+            <div className="relative bg-black w-[100px] h-[40px] ml-4">
+                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" className="h-8"></img>
+            </div> 
             <div className="relative bg-black border border-solid border-black rounded-md h-[500px] w-[350px] mt-[200px] ml-[500px] bg-opacity-60">    
             <form onSubmit={handleSubmit} className="text-white space-y-2 flex flex-col">
                     

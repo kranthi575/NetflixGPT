@@ -3,31 +3,36 @@ import { apiOptions } from "../utils/constants";
 import { addNowPlayingMovies } from "../redux/movieSlice";
 import { useEffect } from "react";
 //custom hook to get now playing movie data from the tmdb
-const UseNowplaying=()=>{
+const useNowplaying=()=>{
 
-    const dispatch=useDispatch();
-    
+//need to fetch the nowplaying movies data from ifdb
+console.log("useNowPlaying called::");
+//creating dispatch
+const dispatch=useDispatch();
 
-    //calling api to fetch - nowplaying move data
-    async  function nowplaying(){
-    const nowplayingdata = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', apiOptions);
-    const nowplayingdatajson=await nowplayingdata.json();
+const fetchnowPlayingmovieData=async ()=>{
 
-    console.log("nowplayingdatajson from the UseNowPlaying hook::");
-    console.log(nowplayingdatajson.results);
+    //calling api
+    console.log("calling api")
+    const fetchmoviedata= await fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', apiOptions);
 
-    //adding nowplaying movies to redux store
-    dispatch(addNowPlayingMovies(nowplayingdatajson.results));
-
-    }
-
-    useEffect(()=>{nowplaying();},[]);
-
-    
+    const moviedata=await fetchmoviedata?.json();
 
 
+    //adding json file into redux store
+    console.log("movie data form the usenowplaying")
+    console.log(moviedata?.results);
 
- 
+    dispatch(addNowPlayingMovies(moviedata?.results));
+    //done with adding movie data to redux store
+
+
+
 }
 
-export default UseNowplaying;
+useEffect(()=>{fetchnowPlayingmovieData();},[]);
+
+
+}
+
+export default useNowplaying;

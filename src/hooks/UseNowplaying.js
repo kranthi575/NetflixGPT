@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { apiOptions } from "../utils/constants";
 import { addNowPlayingMovies } from "../redux/movieSlice";
 import { useEffect } from "react";
@@ -9,6 +9,8 @@ const useNowplaying=()=>{
 console.log("useNowPlaying called::");
 //creating dispatch
 const dispatch=useDispatch();
+
+const nowplayingMovies=useSelector((store)=>store.movies.nowplayingmovies);
 
 const fetchnowPlayingmovieData=async ()=>{
 
@@ -30,7 +32,7 @@ const fetchnowPlayingmovieData=async ()=>{
 
 }
 
-useEffect(()=>{fetchnowPlayingmovieData();},[]);
+useEffect(()=>{ if(nowplayingMovies!=null){console.log("useeffct is calling in useNowPlaying");fetchnowPlayingmovieData();}},[]);
 
 
 }

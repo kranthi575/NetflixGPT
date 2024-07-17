@@ -1,32 +1,34 @@
 import { useSelector } from "react-redux";
 import VideoTitle from "./VideoTitle";
-import VideoBackground from "./VideoBackground";
 
 const MainContainer=()=>{
 
-   
+    //reading out the nowplaying movies data from the redux store
 
-//reading data from redux store :: movieslice
+    const nowplayingMovies=useSelector((store)=>store.movies.nowplayingmovies);
 
-const nowPlayingMovies=useSelector((store)=>store.movies?.nowplayingmovies);
+    console.log("printing out nowplaying movies data from the redux store :: maincontroller component");
+    console.log(nowplayingMovies[0])
+    // if(nowplayingMovies!=null){
+    // nowplayingMovies?.map((movie)=>{
+    //     console.log(movie);
+    // });}
 
-if(!nowPlayingMovies) return;
+    const mainMovie=nowplayingMovies[0];
 
-const mainMovie=nowPlayingMovies[0];
-console.log("main movie");
-console.log(mainMovie);
-//destructering
-const {original_title,overview,id}=mainMovie;
+    console.log(mainMovie);
 
-console.log("mainMovie Id");
-console.log(id);
-return <>
-        
-        <VideoTitle original_title={original_title} overview={overview}/>
-        <VideoBackground id={id}/>
+    //early return :: checking if object is returned or not
+    if(mainMovie==undefined) return;
 
-</>
+    const  {id,original_title,overview} = mainMovie;
+
+    console.log(id,original_title,overview);
+
+    return <>
+            <VideoTitle original_title={original_title} overview={overview}/>
+            
+    </>
 
 }
-
 export default MainContainer;

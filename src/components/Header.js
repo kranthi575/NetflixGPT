@@ -14,11 +14,10 @@ const Header=()=>{
     const activeuser=useSelector((store)=>store.user.activeUser);
     console.log("active user from Header::")
     console.log(activeuser);
+
+    
     useEffect(()=>{
-
-        
-
-        onAuthStateChanged(auth, (user) => {
+       const unsubscribe = onAuthStateChanged(auth, (user) => {
             if(user==null){
                 console.log("active user is null :: redirecting to login page")
                     navigate('/login');
@@ -30,9 +29,14 @@ const Header=()=>{
               //adding signin user data to redux store
     
                 dispatch(addUser({uid:uid,displayName:displayName,email:email}));
+
+                //redirecting to browseHome
+                navigate('/browserHome')
             }
             
           });
+          // Unsiubscribe when component unmounts
+        return () => unsubscribe();
       },[]);
 
       function handleSignOut(){
@@ -47,7 +51,7 @@ const Header=()=>{
           });
     }
 
-    useEffect(()=>{UseNowplaying();},[]);
+   // useEffect(()=>{UseNowplaying();},[]);
 
     return <>
    

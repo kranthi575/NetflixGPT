@@ -3,6 +3,7 @@ import useNowplaying from "../hooks/useNowplaying";
 import MainContainer from "./MainContainer";
 import SecondContainer from "./SecondContainer";
 import { useEffect } from "react";
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies2";
 
 const BrowserHome=()=>{
 
@@ -11,7 +12,7 @@ const BrowserHome=()=>{
     //calling customhook UseNowPlaying to fetch nowplaying movie data and store it into redux store :: movieslice
     
     console.log("calling useNowplaying browserhome")
-    useNowplaying();
+    useNowPlayingMovies();
     
 
     /* 
@@ -24,9 +25,9 @@ const BrowserHome=()=>{
         //fetching nowplaying movie data
         
     return <>
-    <Header/>
-    <MainContainer/>
-    <SecondContainer/>
+     <Header/>
+     <MainContainer/> 
+   {/* <SecondContainer/>  */}
     
     </>
 

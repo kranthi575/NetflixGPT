@@ -29,8 +29,25 @@
 
 ==========================
 
--creating custom hook to fetch the now playing movie data
--creating new redux movieSlice to add the now playing movie data.
+-create custom hook to fetch the now playing movie data
+-create new redux movieSlice to add the now playing movie data.
+
+
+=====================
+creating browserhome page with 
+        -Header
+        -main controller
+            -video title
+            -video background
+        -second controller
+            -movies *n in row with seprated from the category
+===================
+fixed the app till Header 
+
+---now fixing the main controller
+//able to readout the nowplaying movie data from the main controller no errors as of now
+
+//now error is fixed with early return in main controller
 
 
 

@@ -4,7 +4,7 @@ import Header from "./Header";
 import FormValidation from "../utils/FormValidation";
 import { useNavigate } from "react-router-dom";
 import auth from "../utils/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../redux/userSlice";
 
@@ -21,6 +21,12 @@ const Login=()=>{
     const [signIn,setsignIn]=useState(null);
     const [errorCode,seterrorCode]=useState(null);
     const navigate=useNavigate();
+
+    onAuthStateChanged(auth, (user) => {
+      if(user!=null){
+            navigate('/browserHome');
+      }
+    });
 
     function handleSignInSubmit(event){
         event.preventDefault();

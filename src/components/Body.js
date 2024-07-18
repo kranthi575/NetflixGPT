@@ -28,9 +28,6 @@ const appRouter=createBrowserRouter(
 
 function Body() {
 
-  console.log("Body component called")
-  
-  
 
   
   return (

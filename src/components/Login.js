@@ -31,7 +31,6 @@ const Login=()=>{
     function handleSignInSubmit(event){
         event.preventDefault();
         const message=FormValidation(null,email.current.value,password.current.value);
-        console.log(message);
         setErrorMsg(message);
         if(message==null){
                 
@@ -45,13 +44,10 @@ const Login=()=>{
               //set signin true
               setsignIn(true);
               
-              console.log("sign success :: Login");
 
               //adding signuser into redux store user slice
               const user=auth.currentUser;
               const {uid,displayName,email}=user;
-              console.log("updating redux from login :: using currentuser");
-                console.log(user);
               //adding signin user data to redux store
     
                 dispatch(addUser({uid:uid,displayName:displayName,email:email}));
@@ -59,11 +55,9 @@ const Login=()=>{
             })
             .catch((error) => {
                 setsignIn(false);
-                console.log("error in sign success")
               const errorCode = error.code;
               const errorMessage = error.message;
               seterrorCode(errorCode);
-              console.log(errorCode," : ",errorMessage)
             });
         }
 

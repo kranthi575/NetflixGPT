@@ -6,24 +6,21 @@ import { useEffect } from "react";
 const useNowplaying=()=>{
 
 //need to fetch the nowplaying movies data from ifdb
-console.log("useNowPlaying called::");
 //creating dispatch
 const dispatch=useDispatch();
-
+var nowPlayingMoviesEmpty=false;
 const nowplayingMovies=useSelector((store)=>store.movies.nowplayingmovies);
+if(Object.keys(nowplayingMovies).length==0){nowPlayingMoviesEmpty=true;}
 
 const fetchnowPlayingmovieData=async ()=>{
 
     //calling api
-    console.log("calling api")
     const fetchmoviedata= await fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', apiOptions);
 
     const moviedata=await fetchmoviedata?.json();
 
 
     //adding json file into redux store
-    console.log("movie data form the usenowplaying")
-    console.log(moviedata?.results);
 
     dispatch(addNowPlayingMovies(moviedata?.results));
     //done with adding movie data to redux store
@@ -32,7 +29,7 @@ const fetchnowPlayingmovieData=async ()=>{
 
 }
 
-useEffect(()=>{ if(nowplayingMovies!=null){console.log("useeffct is calling in useNowPlaying");fetchnowPlayingmovieData();}},[]);
+useEffect(()=>{nowPlayingMoviesEmpty && fetchnowPlayingmovieData()},[]);
 
 
 }

@@ -33,14 +33,11 @@ const Register=()=>{
     
        setErrorMsg(errorMsg);
       
-      console.log(errorMsg);
       if(errorMsg==null){
         const uname=username.current.value;
         const mail=email.current.value;
         const pwd=password.current.value;
-        console.log("no errors in data")
         const formdata={username:uname,email:mail,password:pwd};
-        console.log(formdata);
         setFormData({username:uname,email:mail,password:pwd})
 
         //creating user into firebase
@@ -56,13 +53,11 @@ const Register=()=>{
                     .then(()=>{
                         const {uid,displayName,email}=auth.currentUser;
                         dispatch(addUser({uid:uid,displayName:displayName,email:email}));
-                        console.log("profile updated successfully!!");
                     }
                     ).catch(()=>{
                         console.log("error in updating profile!!");
                     });
                     //updating user with displayname
-                    console.log("creating user::")    
                            
                     setregSuccess(true);
         
@@ -71,7 +66,6 @@ const Register=()=>{
                 .catch((error) => {
                    const  errorCode = error.code;
                     const errorMessage = error.message;
-                    console.log("setting regsucess false");
                     setregSuccess(false);
                     seterrorCode(errorCode);
                     console.log(errorCode," : ",errorMessage)

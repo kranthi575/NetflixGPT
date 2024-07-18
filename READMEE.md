@@ -48,6 +48,12 @@ fixed the app till Header
 //able to readout the nowplaying movie data from the main controller no errors as of now
 
 //now error is fixed with early return in main controller
+creating browserhome page with 
+        -Header
+        -main controller
+            -video title
 
+            ### no issues till here ###
 
+======================
 

@@ -48,8 +48,8 @@ const Header=()=>{
     return <>
    
 
-    <div className="bg-black  flex flex-row justify-between  border bottom-4 border-black">     
-        <div className=" w-[100px] h-[40px] ml-4">
+    <div className="bg-black bg-opacity-60 fad flex flex-row justify-between  border bottom-4 border-black">     
+        <div className=" w-[100px] h-[40px] m-4">
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" className="h-8"></img>
         </div> 
         <div className="m-4 space-x-1 ">

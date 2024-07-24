@@ -4,8 +4,10 @@ const PopularMovies=()=>{
 
 
     const popularMovies=useSelector((appStore)=>{return appStore.secondCtrl.popularMovies});
+   
     //early return
     if(popularMovies==null) return;
+    
     console.log("popular movies from popular component");
     console.log(popularMovies)
     return <>

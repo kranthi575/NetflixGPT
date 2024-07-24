@@ -5,6 +5,8 @@ import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
 import BrowserHome from "./BrowserHome";
+import MovieCard from "./MovieCard";
+import MovieCardClick from "./MovieCardClick";
 
 const appRouter=createBrowserRouter(
   [
@@ -23,7 +25,12 @@ const appRouter=createBrowserRouter(
     {
       path:'/browserHome',
       element:<BrowserHome/>
-    }
+    },
+    {
+      path:'/moviePage',
+      element:<MovieCardClick/>
+    },
+    
   ]); 
 
 function Body() {

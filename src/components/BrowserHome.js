@@ -5,19 +5,24 @@ import SecondContainer from "./SecondContainer";
 import { useEffect } from "react";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
+import useUpcomingMovies from "../hooks/useUpcomingMovies";
 const BrowserHome=()=>{
 
 
-    //calling customhook UseNowPlaying to fetch nowplaying movie data and store it into redux store :: movieslice
+
+        //calling customhook UseNowPlaying to fetch nowplaying movie data and store it into redux store :: movieslice
+        useNowplaying();
     
-    useNowplaying();
+        //calling customhook usePopularMovies to fetch popular movie data
+        usePopularMovies();
+
+        //calling customhook useTopratedMovies to fetch toprated movies
+        useTopRatedMovies();
+
+        //calling customhook useUpcomingMovies to fetch upcoming movies
+        useUpcomingMovies();
     
-    //calling customhook usePopularMovies to fetch popular movie data
-
-
-    usePopularMovies();
-
-    useTopRatedMovies();
+    
     
 
     /* 
@@ -33,7 +38,7 @@ const BrowserHome=()=>{
     <div className="bg-black">
      <Header/>
      <MainContainer/> 
-   <SecondContainer/>
+     <SecondContainer/>
    </div>
     </>
 

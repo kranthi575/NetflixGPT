@@ -1,5 +1,6 @@
 import PopularMovies from "./PopularMovies";
 import TopRatedMovies from "./TopRatedMovies";
+import UpcomingMovies from "./UpcomingMovies";
 
 const SecondContainer=()=>{
 
@@ -11,8 +12,11 @@ const SecondContainer=()=>{
     <div className="absolute flex flex-col  bg-black w-full space-y-2 scrollbar-hide">
             {/* this is the main div which holds the movie cards **/ }
             
-            <PopularMovies/>
+            <UpcomingMovies/>
             <TopRatedMovies/>
+            <PopularMovies/>
+            
+            
     
     </div>
     </>

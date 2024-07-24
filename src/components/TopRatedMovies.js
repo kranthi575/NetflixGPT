@@ -1,12 +1,13 @@
 import { useSelector } from "react-redux";
-import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import MovieCard from "./MovieCard";
 
 const TopRatedMovies=()=>{
 
     const topratedMovies=useSelector((appStore)=>{return appStore.secondCtrl.topratedMovies});
     //early return
-    if(topratedMovies==null) return;
+    console.log("Top rated early return");
+    if(topratedMovies===null) return;
+    console.log("toprated not early return");
     
     return <>
         <div className=" h-[350px] mt-5  flex flex-col">

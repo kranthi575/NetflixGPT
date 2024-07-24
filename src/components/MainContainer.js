@@ -12,8 +12,8 @@ const MainContainer=()=>{
     // nowplayingMovies?.map((movie)=>{
     //     console.log(movie);
     // });}
-
-    const mainMovie=nowplayingMovies[1];
+    const randomNum = Math.floor(Math.random() * 19) + 1;
+    const mainMovie=nowplayingMovies[randomNum];
 
 
     //early return :: checking if object is returned or not

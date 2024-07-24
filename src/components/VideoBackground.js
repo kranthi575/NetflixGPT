@@ -9,11 +9,14 @@ const VideoBackground=({id})=>{
     const {key}=movieTrailer;
 
     return<>
-            <div className="">
+            <div className="bg-black">
             <iframe width="1420" height="600" 
-                src={"https://www.youtube.com/embed/"+key}
+                src={"https://www.youtube.com/embed/"+key+"?mute=1&autoplay=1"}
                 title="YouTube video player" frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="autoplay; encrypted-media;"
+                mute="1"
+                controls="0"
+                modestbranding="1"
                 referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
             </iframe>
             </div>

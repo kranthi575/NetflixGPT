@@ -3,12 +3,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './userSlice';
 import movieReducer from './movieSlice';
+import secondCtrlReducer from './secondCtrlSlice';
 
 const appStore=configureStore(
     {
         reducer:{
             user:userReducer,
-            movies:movieReducer
+            movies:movieReducer,
+            secondCtrl:secondCtrlReducer
         }
     }
 );

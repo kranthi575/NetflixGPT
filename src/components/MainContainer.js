@@ -13,11 +13,11 @@ const MainContainer=()=>{
     //     console.log(movie);
     // });}
 
-    const mainMovie=nowplayingMovies[0];
+    const mainMovie=nowplayingMovies[1];
 
 
     //early return :: checking if object is returned or not
-    if(mainMovie==undefined) return;
+    if(mainMovie===undefined) return;
 
     const  {id,original_title,overview} = mainMovie;
 

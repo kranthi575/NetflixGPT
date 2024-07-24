@@ -57,3 +57,13 @@ creating browserhome page with
 
 ======================
 
+second controller
+----------------
+-fetching popular movies data
+-created secondCtrl redux slice to store popular movies
+-UI like netflix movies scrolling implemented.
+-setting youtube autoplay
+-added popular movies in secondary controller
+
+
+

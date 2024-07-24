@@ -9,3 +9,5 @@ export const apiOptions = {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZjA3NTM3MjUxNjg0OTJhMTkyYjlkYTcyZDEwZTMzOCIsIm5iZiI6MTcyMTAwMzM3Mi43MTkxNjksInN1YiI6IjY2OGMwZmI4ZDNiZmI5NTMyZDBiMWUyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.45WYlHcDTCSxtTlxeaExLV985lLW2mF9qCenOsiCoco'
     }
   };
+
+  export const moviePosterBaseURL="https://image.tmdb.org/t/p/w500";

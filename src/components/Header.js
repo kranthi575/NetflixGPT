@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import auth from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser,removeUser } from "../redux/userSlice";
 import UseNowplaying from "../hooks/useNowplaying";
@@ -24,8 +24,8 @@ const Header=()=>{
     
                 dispatch(addUser({uid:uid,displayName:displayName,email:email}));
 
-                //redirecting to browseHome
-                navigate('/browserHome')
+                // //redirecting to browseHome
+                // navigate('/browserHome')
             }
             
           });
@@ -48,10 +48,12 @@ const Header=()=>{
     return <>
    
 
-    <div className="bg-black bg-opacity-60 fad flex flex-row justify-between  border bottom-4 border-black">     
+    <div className="bg-black  fad flex flex-row justify-between  border bottom-4 border-black">     
+        <Link to="../browserHome">
         <div className=" w-[100px] h-[40px] m-4">
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" className="h-8"></img>
         </div> 
+        </Link>
         <div className="m-4 space-x-1 ">
             <span className="border rounded-sm text-white to-white">{activeuser?.displayName}</span>
             <button className="text-white bg-red-600 h-10 w-15 rounded-lg font-bold" onClick={handleSignOut}>SignOut</button>

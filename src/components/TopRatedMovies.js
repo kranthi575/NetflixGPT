@@ -5,9 +5,9 @@ const TopRatedMovies=()=>{
 
     const topratedMovies=useSelector((appStore)=>{return appStore.secondCtrl.topratedMovies});
     //early return
-    console.log("Top rated early return");
+    //console.log("Top rated early return");
     if(topratedMovies===null) return;
-    console.log("toprated not early return");
+    //console.log("toprated not early return");
     
     return <>
         <div className=" h-[350px] mt-5  flex flex-col">

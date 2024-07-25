@@ -13,7 +13,7 @@ const MainContainer=()=>{
     //     console.log(movie);
     // });}
     const randomNum = Math.floor(Math.random() * 19) + 1;
-    const mainMovie=nowplayingMovies[randomNum];
+    const mainMovie=nowplayingMovies[15];
 
 
     //early return :: checking if object is returned or not

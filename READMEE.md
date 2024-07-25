@@ -64,6 +64,16 @@ second controller
 -UI like netflix movies scrolling implemented.
 -setting youtube autoplay
 -added popular movies in secondary controller
+-added top rated movies and upcoming movies
+
+------------
+-fixing responsive moviecards
+-passing data over the Link
+
+-I am using <Link/> to pass data from the component and passing it through URL
+--using useLocation() i am able to read the data.
+
+The useLocation hook from React Router is helpful in accessing the location object, which contains information about the current URL and its state. When you pass state to a component using Link or useNavigate, you can retrieve this state in the destination component using useLocation.
 
 
 

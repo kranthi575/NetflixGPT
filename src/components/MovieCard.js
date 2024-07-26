@@ -17,9 +17,9 @@ const MovieCard=({movie})=>{
     const movieTitle=movie.original_title;
     return<>
       <Link to='/moviePage' state={movie}>  
-            <div className=" flex-shrink-0 m-5 h-[300px] w-[250px] border border-solid border-white ">
+            <div className=" flex-shrink-0 m-5 h-[300px] w-[250px] border border-solid border-white">
                     <img className="w-full h-full " src={`${moviePosterBaseURL}${movieimageUrl}`}></img>
-                    <p className="text-white text-xl" >{movieTitle}</p>
+                    
              </div>
         </Link>
      </>

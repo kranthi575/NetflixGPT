@@ -6,8 +6,8 @@ const VideoBackground=({id})=>{
 
     //reading out the movietrsiler form the redux store
     const movieTrailer=useSelector((store)=>store.movies?.movietrailer);
-    console.log("movieTrailer")
-    console.log(movieTrailer)
+    // console.log("movieTrailer")
+    // console.log(movieTrailer)
     if(movieTrailer===undefined)return;
     const {key}=movieTrailer;
     
